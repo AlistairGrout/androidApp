@@ -35,7 +35,6 @@ public class DbHelper extends SQLiteOpenHelper
                 "('Version française','Version originale' ), " +
                 "('Thé vert', 'Thé noir' ), " +
                 "('Manger de la nourriture pour chien tous les jours', 'Devoir imiter un chien 6h par jour' ), " +
-                "('Voir Jésus a chaque orgasme', 'Avoir un orgasme chaque fois que tu penses à Jésus' ), " +
                 "('Ski', 'Snowboard' ), " +
                 "('Petit poney', 'Grande licorne' ), " +
                 "('Brontosaurus', 'Tyrannosaurus' ), " +
