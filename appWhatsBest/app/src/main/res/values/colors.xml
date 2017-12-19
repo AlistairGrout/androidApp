@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f5c714</color>
+    <color name="colorPrimaryDark">#36bfab</color>
+    <color name="colorAccent">#f5aac1</color>
+    <color name="colorAccentBar">#008B85</color>
+    <color name="bleuButton">#FAD6C6</color>
+</resources>

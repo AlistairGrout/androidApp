@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">What\'\s Best ?! SQL</string>
+    <string name="bienvenu">What\'\s Best ?!</string>
+    <string name="btnlog">Login</string>
+    <string name="btnregister">Register</string>
+    <string name="credits">An app by Sparkling Kitten</string>
+    <string name="regi_txt">Register an account</string>
+    <string name="log_text">Log into your account</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_about">About</string>
+    <string name="text_about">"What's Best?!" is a fun and simple application I made for school.
+    It is constantly improving and I\'m doing my best to add interesting features to it.
+    I welcome any constructive criticism you might have. Please note that I won\'t be taking down
+    weird propositions you might find in the game. Some are fun, some are not, but in the end it\'s my work
+    and I want to let it have cranky stuff in it.
+    My name is Ali G (yeaaah like the infamous ALI G.) and I develop applications under a label name I just made up, Sparkling Kitten.</string>
+</resources>
