@@ -1,7 +1,6 @@
 package myhelloworldapplication.com.forma203.appwhatsbest.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,12 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import myhelloworldapplication.com.forma203.appwhatsbest.MainActivity;
 import myhelloworldapplication.com.forma203.appwhatsbest.R;
-import myhelloworldapplication.com.forma203.appwhatsbest.UserActivity;
 
-public class Login2Fragment extends Fragment implements View.OnClickListener
-{
+public class Login2Fragment extends Fragment implements View.OnClickListener {
 
     private Callback callback;
     private EditText etMail;
@@ -25,20 +21,9 @@ public class Login2Fragment extends Fragment implements View.OnClickListener
     private Button reset;
     private Button ret;
 
-    public interface Callback
-    {
-        void pressLogin(String message, String mail, String password);
-        void pressReset();
-        void changeActivityUserProfile();
-        void resetActivity();
-        void loginError(String message);
-    }
-
-    public Login2Fragment()
-    {
+    public Login2Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,49 +44,59 @@ public class Login2Fragment extends Fragment implements View.OnClickListener
             }
         });
 
-    return v;
+        return v;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.callback = (Callback) getActivity();
+    }
 
-        @Override
-        public void onAttach (Context context)
-        {
-            super.onAttach(context);
-            this.callback = (Callback) getActivity();
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if (view.getId() == R.id.btn_login_submit) {
+            String mail = etMail.getText().toString();
+            String password = etPassword.getText().toString();
+            Log.i("LoginActivity", mail + " : " + password);
+            handleNext();
+        } else if (view.getId() == R.id.btn_login_reset) {
+            callback.resetActivity();
         }
 
-        @Override
-        public void onDetach ()
-        {
-            super.onDetach();
-            callback = null;
+    }
+
+    private void handleNext() {
+
+        String mail;
+        String pass;
+        mail = etMail.getText().toString().trim();
+        pass = etPassword.getText().toString().trim();
+
+        if (mail.equals("") || pass.equals("")) {
+            this.callback.loginError("Please fill in the spaces");
+        } else if (mail.equals("testmail@hotmail.com") || pass.equals("1234")) {
+            callback.pressLogin("Welcome back !", mail, pass);
         }
+    }
 
-        @Override
-        public void onClick (View view)
-        {
+    // TODO Putting EVERYTHING in relatively edgy in terms of coupling, this should be refactored
+    public interface Callback {
+        void pressLogin(String message, String mail, String password);
 
-            if (view.getId() == R.id.btn_login_submit) {
-                String mail = etMail.getText().toString();
-                String password = etPassword.getText().toString();
-                Log.i("LoginActivity", mail + " : " + password);
-                handleNext();
-            } else if (view.getId() == R.id.btn_login_reset) {
-                callback.resetActivity();
-            }
+        void pressReset();
 
-        }
-        private void handleNext() {
+        void changeActivityUserProfile();
 
-            String mail;
-            String pass;
-            mail = etMail.getText().toString().trim();
-            pass = etPassword.getText().toString().trim();
+        void resetActivity();
 
-            if (mail.equals("") || pass.equals("")) {
-                this.callback.loginError("Please fill in the spaces");
-            } else if (mail.equals("testmail@hotmail.com") || pass.equals("1234")){
-                callback.pressLogin("Welcome back !", mail, pass);
-            }
-        }
+        void loginError(String message);
+    }
 }

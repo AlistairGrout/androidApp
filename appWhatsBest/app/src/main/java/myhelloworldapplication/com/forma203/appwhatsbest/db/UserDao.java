@@ -21,7 +21,7 @@ public class UserDao {
                     "%s TEXT NOT NULL," +
                     "%s TEXT NOT NULL)",
 
-                    TABLE_NAME,
+            TABLE_NAME,
             COLUMN_ID,
             COLUMN_EMAIL,
             COLUMN_PASSWORD);
@@ -34,6 +34,12 @@ public class UserDao {
 
     public UserDao(Context context) {
         this.context = context;
+    }
+
+    public static User cursorToUser(Cursor c) {
+        User user = new User();
+        user.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+        return user;
     }
 
     public void openWritable() {
@@ -58,24 +64,22 @@ public class UserDao {
 
     }
 
-    public long update(User user)
-    {
+    public long update(User user) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, user.getId());
 
         return db.update(
                 TABLE_NAME, values,
                 COLUMN_ID + " = ?",
-                new String[] { String.valueOf(user.getId()) }
+                new String[]{String.valueOf(user.getId())}
         );
     }
 
-    public int delete(User user)
-    {
+    public int delete(User user) {
         return db.delete(
                 TABLE_NAME,
                 COLUMN_ID + " = ?",
-                new String[] { String.valueOf(user.getId())}
+                new String[]{String.valueOf(user.getId())}
         );
     }
 
@@ -83,7 +87,7 @@ public class UserDao {
         Cursor c = db.query(TABLE_NAME,
                 null,
                 COLUMN_ID + " = ?",
-                new String[] { String.valueOf(id) },
+                new String[]{String.valueOf(id)},
                 null,
                 null,
                 null);
@@ -107,19 +111,9 @@ public class UserDao {
         }
     }
 
-    public Cursor getUserCursor()
-    {
+    public Cursor getUserCursor() {
         return db.query(TABLE_NAME, null, COLUMN_ID, new String[]{}, null, null, null);
     }
-
-    public static User cursorToUser(Cursor c) {
-        User user = new User();
-        user.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        return user;
-    }
-
-
-
 
 
 }

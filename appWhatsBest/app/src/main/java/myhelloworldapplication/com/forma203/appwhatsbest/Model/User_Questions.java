@@ -3,16 +3,15 @@ package myhelloworldapplication.com.forma203.appwhatsbest.Model;
 import java.io.Serializable;
 
 
-public class User_Questions implements Serializable
-{
+// TODO No underscores. PERIOD §!§!§! -> UserQuestions
+public class User_Questions implements Serializable {
 
     private int id;
-    private String refuser;
+    private String refuser; // TODO lower camel case -> refUser
     private String refquestion;
     private Boolean refinal;
 
-    public User_Questions()
-    {
+    public User_Questions() {
         this.id = id;
         this.refuser = refuser;
         this.refquestion = refquestion;
@@ -20,17 +19,38 @@ public class User_Questions implements Serializable
 
     }
 
-    public int getId() {return id;}
-    public void setId(int id){this.id = id;}
+    public int getId() {
+        return id;
+    }
 
-    public String getRefuser() {return refuser;}
-    public void setRefuser(String refuser){this.refuser = refuser;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getRefquestion() {return refquestion;}
-    public void setRefquestion(String refquestion){this.refquestion = refquestion;}
+    public String getRefuser() {
+        return refuser;
+    }
 
-    public Boolean getRefinal() {return refinal;}
-    public void setRefinal(Boolean refinal){this.refinal = refinal;}
+    // TODO see, lack of proper camel case leeds to semantic issues -> what is a Refuser ?
+    public void setRefuser(String refuser) {
+        this.refuser = refuser;
+    }
+
+    public String getRefquestion() {
+        return refquestion;
+    }
+
+    public void setRefquestion(String refquestion) {
+        this.refquestion = refquestion;
+    }
+
+    public Boolean getRefinal() {
+        return refinal;
+    }
+
+    public void setRefinal(Boolean refinal) {
+        this.refinal = refinal;
+    }
 
 
 }
