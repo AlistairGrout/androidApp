@@ -8,7 +8,7 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    // TODO Not parameter passed in constructor, this is greyed for a reason :p
+    // TODO No parameter passed in constructor, this is greyed for a reason :p
     public User() {
         this.id = id;
         this.email = email;
