@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 public class RealMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,13 +14,24 @@ public class RealMainActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_real_main);
 
-        Button btnAccount = findViewById(R.id.btn_account);
-        Button btnPlay = findViewById(R.id.btn_play);
-        Button btnLogOff = findViewById(R.id.btn_log_off);
+//        Button btnAccount = findViewById(R.id.btn_account);
+//        Button btnPlay = findViewById(R.id.btn_play);
+//        Button btnLogOff = findViewById(R.id.btn_log_off);
 
-        btnAccount.setOnClickListener(this);
-        btnPlay.setOnClickListener(this);
-        btnLogOff.setOnClickListener(this);
+//        btnAccount.setOnClickListener(this);
+//        btnPlay.setOnClickListener(this);
+//        btnLogOff.setOnClickListener(this);
+
+        // TODO This could be done as well - not preferred or better. This is mainly informative
+        View[] buttons = {
+                findViewById(R.id.btn_account),
+                findViewById(R.id.btn_play),
+                findViewById(R.id.btn_log_off)
+        };
+
+        for (View view : buttons) {
+            view.setOnClickListener(this);
+        }
     }
 
     @Override

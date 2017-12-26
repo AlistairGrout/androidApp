@@ -31,7 +31,7 @@ public class User_Questions implements Serializable {
         return refuser;
     }
 
-    // TODO see, lack of proper camel case leeds to semantic issues -> what is a Refuser ?
+    // TODO see, lack of proper camel case leads to semantic issues -> what is a Refuser ?
     public void setRefuser(String refuser) {
         this.refuser = refuser;
     }

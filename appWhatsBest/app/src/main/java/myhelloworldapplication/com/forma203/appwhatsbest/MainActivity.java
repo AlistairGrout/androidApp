@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements
                 .beginTransaction()
                 .replace(R.id.main_container, new StartFragment())
                 .commit();
+
+        //        replaceFragment(new StartFragment());
     }
 
     //region TODO This should be refactored, not DRY (Don't Repeat Yourself)
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements
         ft.replace(R.id.main_container, new Register2Fragment());
         ft.addToBackStack(null);
         ft.commit();
+
+        // TODO like this
+//        replaceFragment(new Register2Fragment());
     }
 
     @Override
@@ -68,22 +73,37 @@ public class MainActivity extends AppCompatActivity implements
         ft.replace(R.id.main_container, new AboutFragment());
         ft.addToBackStack(null);
         ft.commit();
+
+        // TODO like this
+//        replaceFragment(new AboutFragment());
     }
     //endregion
 
 
+    // TODO This is JavaDoc this is where you tell what your functions do.
+
+    /**
+     * Redirect user to RealMainActivity on button press.
+     *
+     * @param message  provided toast message as String
+     * @param mail     unused, provided mail
+     * @param password unused, provided password
+     */
     @Override
     public void pressLogin(String message, String mail, String password) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         Intent toPage = new Intent(MainActivity.this, RealMainActivity.class);
         startActivity(toPage);
         Log.i("MainActivity", "Press Login");
+        // TODO Wrong comment placement, see JavaDoc above
         // Log l'user sur son profil utilisateur
     }
 
+    /**
+     * TODO Your documentation here
+     */
     @Override
-    public void pressReset()//bouton sur le frag log
-    {
+    public void pressReset() { //bouton sur le frag log TODO should be JavaDoc
         Intent toReturn = new Intent(MainActivity.this, MainActivity.class);
         startActivity(toReturn);
     }

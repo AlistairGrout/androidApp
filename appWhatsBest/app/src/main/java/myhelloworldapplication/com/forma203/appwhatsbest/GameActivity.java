@@ -56,6 +56,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // TODO This shouldn't be in french (or everything should - but don't)
     private void afficherPropo() {
         ThingsDao thingsDao = new ThingsDao(this);
         thingsDao.openReadable();
