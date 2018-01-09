@@ -21,10 +21,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private Button btnRegister;
     private Button btnAbout;
 
-    public StartFragment() {
-        // Required empty public constructor
-        // TODO not really :p
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,13 +28,11 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_start, container, false);
 
         // TODO this should move below, in onViewCreated (cleaner lifecycle)
-        // TODO unnecessary cast with androidStudio 3.x
-//        btnLogin = (Button) v.findViewById(R.id.btn_log);
-        btnRegister = (Button) v.findViewById(R.id.btn_register);
-        btnAbout = (Button) v.findViewById(R.id.btn_about);
+        btnLogin = v.findViewById(R.id.btn_log);
+        btnRegister = v.findViewById(R.id.btn_register);
+        btnAbout = v.findViewById(R.id.btn_about);
 
-        // TODO since all you do with those buttons is setting a listener, should be shorter
-        v.findViewById(R.id.btn_log).setOnClickListener(this); // clear
+        btnLogin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
         btnAbout.setOnClickListener(this);
         return v;
@@ -47,17 +41,14 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Callback) {
-            callback = (Callback) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+        callback = (Callback) getActivity();
+
     }
 
     @Override

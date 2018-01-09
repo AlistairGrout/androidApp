@@ -20,21 +20,15 @@ public class MainActivity extends AppCompatActivity implements
         StartFragment.Callback,
         AboutFragment.Callback {
 
-
+//TODO problems with going back button. Must see how to make sure it doesn't leave the app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_container, new StartFragment())
-                .commit();
-
-        //        replaceFragment(new StartFragment());
+     replaceFragment(new StartFragment());
     }
 
-    //region TODO This should be refactored, not DRY (Don't Repeat Yourself)
     public void replaceFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -44,43 +38,19 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void startLogin() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.main_container, new Login2Fragment());
-        ft.addToBackStack(null);
-        ft.commit();
-
-        // TODO like this
-//        replaceFragment(new Login2Fragment());
+        replaceFragment(new Login2Fragment());
     }
 
     @Override
     public void startRegister() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.main_container, new Register2Fragment());
-        ft.addToBackStack(null);
-        ft.commit();
-
-        // TODO like this
-//        replaceFragment(new Register2Fragment());
+        replaceFragment(new Register2Fragment());
     }
 
     @Override
     public void startAbout() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.main_container, new AboutFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-
-        // TODO like this
-//        replaceFragment(new AboutFragment());
+        replaceFragment(new AboutFragment());
     }
     //endregion
-
-
-    // TODO This is JavaDoc this is where you tell what your functions do.
 
     /**
      * Redirect user to RealMainActivity on button press.
@@ -95,15 +65,10 @@ public class MainActivity extends AppCompatActivity implements
         Intent toPage = new Intent(MainActivity.this, RealMainActivity.class);
         startActivity(toPage);
         Log.i("MainActivity", "Press Login");
-        // TODO Wrong comment placement, see JavaDoc above
-        // Log l'user sur son profil utilisateur
     }
 
-    /**
-     * TODO Your documentation here
-     */
     @Override
-    public void pressReset() { //bouton sur le frag log TODO should be JavaDoc
+    public void pressReset() {
         Intent toReturn = new Intent(MainActivity.this, MainActivity.class);
         startActivity(toReturn);
     }

@@ -5,14 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import static myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao.COLUMN_CHOIX;
-import static myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao.COLUMN_CHOIXBIS;
+import static myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao.COLUMN_CHOICE1;
+import static myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao.COLUMN_CHOICE2;
+
 
 public class DbHelper extends SQLiteOpenHelper
 
 {
     public static final String DB_NAME = "game_db";
-    public static final int VERSION = 11;
+    public static final int VERSION = 14;
     public DbHelper(Context context) {
         super(context, DB_NAME, null, VERSION);
     }
@@ -26,7 +27,7 @@ public class DbHelper extends SQLiteOpenHelper
         db.execSQL(UserDao.CREATE_REQUEST);
         db.execSQL(UserQuestionsDao.CREATE_REQUEST);
 
-        db.execSQL("INSERT INTO " + ThingsDao.TABLE_NAME + " (" + COLUMN_CHOIX + ", " + COLUMN_CHOIXBIS + ") " +
+        db.execSQL("INSERT INTO " + ThingsDao.TABLE_NAME + " (" + COLUMN_CHOICE1 + ", " + COLUMN_CHOICE2 + ") " +
                 "VALUES " +
                 "('Perdre la vue', 'Perdre l''ouïe'), " +
                 "('Plus jamais manger de fromage','Plus jamais savoir lire' ), " +

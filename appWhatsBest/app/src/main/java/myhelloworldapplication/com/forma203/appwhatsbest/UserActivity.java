@@ -16,8 +16,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        gameBtn = (Button) findViewById(R.id.btn_game);
-        returnBtn = (Button) findViewById(R.id.btn_return1);
+        gameBtn = findViewById(R.id.btn_game);
+        returnBtn = findViewById(R.id.btn_return1);
         returnBtn.setOnClickListener(this);
         gameBtn.setOnClickListener(this);
     }

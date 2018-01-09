@@ -21,9 +21,6 @@ public class Login2Fragment extends Fragment implements View.OnClickListener {
     private Button reset;
     private Button ret;
 
-    public Login2Fragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -37,8 +37,10 @@ public class UserDao {
     }
 
     public static User cursorToUser(Cursor c) {
-        User user = new User();
+        User user = new User(1, "testmail", "1234");
         user.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+        user.setEmail(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+        user.setPassword(c.getString(c.getColumnIndex(COLUMN_PASSWORD)));
         return user;
     }
 

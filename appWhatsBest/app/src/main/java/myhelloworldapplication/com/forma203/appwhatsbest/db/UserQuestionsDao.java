@@ -8,15 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import myhelloworldapplication.com.forma203.appwhatsbest.Model.User_Questions;
+import myhelloworldapplication.com.forma203.appwhatsbest.Model.UserQuestions;
 
 public class UserQuestionsDao {
     public static final String TABLE_NAME = "userquestions_db";
 
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_REFUSER = "refuser";
-    public static final String COLUMN_REFQUESTION = "refquestion";
-    public static final String COLUMN_REFINAL = "refinal";
+    public static final String COLUMN_USER = "refUser";
+    public static final String COLUMN_QUESTION = "refQuestion";
+    public static final String COLUMN_FINAL = "refFinal";
 
     public static final String CREATE_REQUEST
             = String.format("CREATE TABLE %s (" +
@@ -27,9 +27,9 @@ public class UserQuestionsDao {
 
             TABLE_NAME,
             COLUMN_ID,
-            COLUMN_REFQUESTION,
-            COLUMN_REFUSER,
-            COLUMN_REFINAL);
+            COLUMN_QUESTION,
+            COLUMN_USER,
+            COLUMN_FINAL);
 
     public static final String DROP_REQUEST = String.format("DROP TABLE %s", TABLE_NAME);
 
@@ -41,12 +41,12 @@ public class UserQuestionsDao {
         this.context = context;
     }
 
-    public static User_Questions cursorToUserQuestions(Cursor c) {
-        User_Questions userQuestions = new User_Questions();
+    public static UserQuestions cursorToUserQuestions(Cursor c) {
+        UserQuestions userQuestions = new UserQuestions();
         userQuestions.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        userQuestions.setRefuser(c.getString(c.getColumnIndex(COLUMN_REFUSER)));
-        userQuestions.setRefquestion(c.getString(c.getColumnIndex(COLUMN_REFQUESTION)));
-        userQuestions.setRefinal(c.getInt(c.getColumnIndex(COLUMN_REFINAL)) == 1);
+        userQuestions.setRefUser(c.getString(c.getColumnIndex(COLUMN_USER)));
+        userQuestions.setRefQuestion(c.getString(c.getColumnIndex(COLUMN_QUESTION)));
+        userQuestions.setRefFinal(c.getInt(c.getColumnIndex(COLUMN_FINAL)) == 1);
         return userQuestions;
     }
 
@@ -65,22 +65,22 @@ public class UserQuestionsDao {
         dbHelper.close();
     }
 
-    public long insert(User_Questions userQuestions) {
+    public long insert(UserQuestions userQuestions) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, userQuestions.getId());
-        values.put(COLUMN_REFUSER, userQuestions.getRefuser());
-        values.put(COLUMN_REFQUESTION, userQuestions.getRefquestion());
-        values.put(COLUMN_REFINAL, userQuestions.getRefinal() ? 1 : 0);
+        values.put(COLUMN_USER, userQuestions.getRefUser());
+        values.put(COLUMN_QUESTION, userQuestions.getRefQuestion());
+        values.put(COLUMN_FINAL, userQuestions.getRefFinal() ? 1 : 0);
 
         return db.insert(TABLE_NAME, null, values);
     }
 
-    public long update(User_Questions userQuestions) {
+    public long update(UserQuestions userQuestions) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, userQuestions.getId());
-        values.put(COLUMN_REFUSER, userQuestions.getRefuser());
-        values.put(COLUMN_REFQUESTION, userQuestions.getRefquestion());
-        values.put(COLUMN_REFINAL, userQuestions.getRefinal() ? 1 : 0);
+        values.put(COLUMN_USER, userQuestions.getRefUser());
+        values.put(COLUMN_QUESTION, userQuestions.getRefQuestion());
+        values.put(COLUMN_FINAL, userQuestions.getRefFinal() ? 1 : 0);
 
         return db.update(
                 TABLE_NAME, values,
@@ -89,7 +89,7 @@ public class UserQuestionsDao {
         );
     }
 
-    public int delete(User_Questions userQuestions) {
+    public int delete(UserQuestions userQuestions) {
         return db.delete(
                 TABLE_NAME,
                 COLUMN_ID + " = ?",
@@ -114,10 +114,10 @@ public class UserQuestionsDao {
         }
     }
 
-    public User_Questions getUserQuestionsById(int id) {
+    public UserQuestions getUserQuestionsById(int id) {
         Cursor c = getPropositionCursorById(id);
         if (c != null) {
-            User_Questions userQuestions = cursorToUserQuestions(c);
+            UserQuestions userQuestions = cursorToUserQuestions(c);
             c.close();
             return userQuestions;
         } else {
@@ -129,11 +129,11 @@ public class UserQuestionsDao {
         return db.query(TABLE_NAME, null, COLUMN_ID, new String[]{}, null, null, null);
     }
 
-    public List<User_Questions> getUserQuestions() {
-        List<User_Questions> userQuestions = new ArrayList<>();
+    public List<UserQuestions> getUserQuestions() {
+        List<UserQuestions> userQuestions = new ArrayList<>();
         Cursor c = getUserQuestionsCursor();
         while (c.moveToNext()) {
-            User_Questions u = cursorToUserQuestions(c);
+            UserQuestions u = cursorToUserQuestions(c);
             userQuestions.add(u);
         }
         c.close();

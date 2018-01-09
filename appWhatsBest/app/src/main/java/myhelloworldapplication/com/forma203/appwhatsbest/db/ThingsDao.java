@@ -18,8 +18,8 @@ public class ThingsDao
     public static final String TABLE_NAME = "questions_db";
 
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_CHOIX = "choix1";
-    public static final String COLUMN_CHOIXBIS = "choix2";
+    public static final String COLUMN_CHOICE1 = "choice1";
+    public static final String COLUMN_CHOICE2 = "choice2";
 
 
     public static final String CREATE_REQUEST
@@ -30,8 +30,8 @@ public class ThingsDao
 
             TABLE_NAME,
             COLUMN_ID,
-            COLUMN_CHOIX,
-            COLUMN_CHOIXBIS);
+            COLUMN_CHOICE1,
+            COLUMN_CHOICE2);
 
     public static final String DROP_REQUEST = String.format("DROP TABLE %s", TABLE_NAME);
 
@@ -60,16 +60,16 @@ public class ThingsDao
 
     public long insert(Proposition proposition) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOIX, proposition.getChoix());
-        values.put(COLUMN_CHOIXBIS, proposition.getChoixbis());
+        values.put(COLUMN_CHOICE1, proposition.getChoice());
+        values.put(COLUMN_CHOICE2, proposition.getChoice2());
         return db.insert(TABLE_NAME, null, values);
     }
 
     public long update(Proposition proposition)
     {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOIX, proposition.getChoix());
-        values.put(COLUMN_CHOIXBIS, proposition.getChoixbis());
+        values.put(COLUMN_CHOICE1, proposition.getChoice());
+        values.put(COLUMN_CHOICE2, proposition.getChoice2());
 
         return db.update(
             TABLE_NAME, values,
@@ -135,8 +135,8 @@ public class ThingsDao
     public static Proposition cursorToProposition(Cursor c) {
         Proposition proposition = new Proposition();
         proposition.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        proposition.setChoix(c.getString(c.getColumnIndex(COLUMN_CHOIX)));
-        proposition.setChoixbis(c.getString(c.getColumnIndex(COLUMN_CHOIXBIS)));
+        proposition.setChoice(c.getString(c.getColumnIndex(COLUMN_CHOICE1)));
+        proposition.setChoice2(c.getString(c.getColumnIndex(COLUMN_CHOICE2)));
         return proposition;
     }
 
