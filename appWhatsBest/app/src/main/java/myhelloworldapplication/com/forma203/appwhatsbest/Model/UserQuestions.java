@@ -2,8 +2,7 @@ package myhelloworldapplication.com.forma203.appwhatsbest.Model;
 
 import java.io.Serializable;
 
-
-
+// TODO If you use Serializable to pass this through Activity / Fragment bundles, try Parcelable instead
 public class UserQuestions implements Serializable {
 
     private int id;

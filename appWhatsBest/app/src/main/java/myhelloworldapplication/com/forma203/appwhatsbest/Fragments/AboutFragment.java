@@ -1,55 +1,52 @@
 package myhelloworldapplication.com.forma203.appwhatsbest.Fragments;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import javax.security.auth.callback.Callback;
 
 import myhelloworldapplication.com.forma203.appwhatsbest.R;
 
-public class AboutFragment extends Fragment implements View.OnClickListener{
-
+/**
+ * TODO For navigation purposes, I think this should become an Activity
+ * to understand why, use your app and then press 'About', 'Return', 'About', 'Return', etc a few times
+ * and then press your phone's physical back button
+ */
+public class AboutFragment extends Fragment implements View.OnClickListener {
 
     private Callback callback;
-    private Button retAgain;
-
-
-    public interface Callback {
-        void pressRet();
-    }
+//    private Button retAgain; TODO this field doesn't need to be a class property
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_about, container, false);
-        retAgain = v.findViewById(R.id.btn_ret);
-        retAgain.setOnClickListener(this);
-        return v;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
+    // TODO let onCreateView() do the view creation and onViewCreated() the view manipulation : cleaner
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // TODO get the view and assign a click listener on it in one sentence
+        view.findViewById(R.id.btn_ret).setOnClickListener(this);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Callback) {
-            callback = (Callback) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+        // TODO Since you use this fragment in MainActivity only, instanceof is not necessary
+//        if (context instanceof Callback) {
+        callback = (Callback) context;
+//        }
+        // TODO this is neat but not necessary, your app will crash if no callback is provided anyway
+//        else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
-
 
     @Override
     public void onDetach() {
@@ -65,6 +62,12 @@ public class AboutFragment extends Fragment implements View.OnClickListener{
                 break;
         }
 
+    }
+
+    // TODO you don't need to write documentation when your naming is spot-on 'OnReturnPressListener' is self-explanatory
+    public interface Callback {
+        //    public interface OnReturnPressListener {
+        void pressRet();
     }
 
 }

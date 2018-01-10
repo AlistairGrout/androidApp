@@ -3,8 +3,6 @@ package myhelloworldapplication.com.forma203.appwhatsbest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,13 +18,13 @@ public class MainActivity extends AppCompatActivity implements
         StartFragment.Callback,
         AboutFragment.Callback {
 
-//TODO problems with going back button. Must see how to make sure it doesn't leave the app
+    //TODO problems with going back button. Must see how to make sure it doesn't leave the app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     replaceFragment(new StartFragment());
+        replaceFragment(new StartFragment());
     }
 
     public void replaceFragment(Fragment fragment) {
@@ -36,6 +34,11 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
     }
 
+    // TODO Regioning could help you in terms of readability when you have multiple sources of overrides (callbacks)
+    // TODO Select the code you'd like to region (ideally methods) and then press CTRL + ALT + T and then 'region ... endregion'
+
+    // TODO Now, we know what do we implement here : methods of StartFragment.Callback - just a region, no documentation needed
+    //region StartFragment.Callback
     @Override
     public void startLogin() {
         replaceFragment(new Login2Fragment());
