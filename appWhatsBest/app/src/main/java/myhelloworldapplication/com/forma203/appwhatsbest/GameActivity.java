@@ -57,7 +57,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         int index = new Random().nextInt(propositions.size());
         Proposition proposition = propositions.get(index);
-        text1.setText(proposition.getChoice());
+        text1.setText(proposition.getChoice1());
         text2.setText(proposition.getChoice2());
     }
 

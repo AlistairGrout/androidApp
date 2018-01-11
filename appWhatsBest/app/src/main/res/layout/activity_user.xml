@@ -32,15 +32,28 @@
         />
 
     <Button
+        android:id="@+id/btn_list"
+        android:text="List of choices"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.Button"
+        />
+
+    <Button
         android:id="@+id/btn_return1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Main menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_game"
+        app:layout_constraintTop_toBottomOf="@id/btn_list"
         android:theme="@style/AppTheme.Button"
         />
+
+
 
     <ImageView
         android:id="@+id/img"

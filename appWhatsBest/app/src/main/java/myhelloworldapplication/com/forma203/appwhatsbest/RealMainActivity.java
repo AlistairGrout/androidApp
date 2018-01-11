@@ -2,9 +2,11 @@ package myhelloworldapplication.com.forma203.appwhatsbest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+
+import myhelloworldapplication.com.forma203.appwhatsbest.Fragments.StartFragment;
 
 public class RealMainActivity extends AppCompatActivity implements View.OnClickListener {
 
