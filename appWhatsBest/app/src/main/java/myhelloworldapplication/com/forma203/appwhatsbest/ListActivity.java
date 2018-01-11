@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.List;
-
 import myhelloworldapplication.com.forma203.appwhatsbest.Model.Proposition;
 import myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao;
 
@@ -77,7 +75,6 @@ public class ListActivity extends AppCompatActivity
 //                android.R.layout.simple_list_item_1, propositions);
 //
 //        lvPropositions.setAdapter(adapter);
-//
 //    }
 //
 //    private List<Proposition> getPropositions() {
@@ -116,11 +113,9 @@ public class ListActivity extends AppCompatActivity
 
         new AlertDialog.Builder(this)
                 .setTitle("What do you want to do ?")
-                // TODO this is not a good way to do it. look @ setPositiveButton() / setNegativeButton()
                 .setItems(R.array.items_menu, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         switch (which) {
                             case 0:
                                 Intent toEdit = new Intent(ListActivity.this, AddActivity.class);
