@@ -27,6 +27,8 @@ public class ListActivity extends AppCompatActivity
     private Button btnAdd;
     private EditText etSearch;
     private ListView lvPropositions;
+    // TODO Read the next TODO in this file ;p
+//    private ThingsDao thingsDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class ListActivity extends AppCompatActivity
         lvPropositions.setOnItemClickListener(this);
         lvPropositions.setOnItemLongClickListener(this);
 
+        // TODO Since you'll use your DAO a lot, this should be a class property to use it later
+        // thingsDao = new ThingsDao(this);
+
     }
 
     @Override
@@ -50,18 +55,10 @@ public class ListActivity extends AppCompatActivity
         refreshListView();
     }
 
-    // TODO this is the way to do it, you could close your DAO before instantiating your adapter, see comment
+
     protected void refreshListView() {
         ThingsDao thingsDao = new ThingsDao(this);
         thingsDao.openReadable();
-
-//        List<Proposition> propositions = thingsDao.getPropositions();
-//        thingsDao.close();
-//
-//        ArrayAdapter<Proposition> adapter = new ArrayAdapter<Proposition>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                propositions);
 
         ArrayAdapter<Proposition> adapter = new ArrayAdapter<Proposition>(
                 this,
@@ -72,6 +69,31 @@ public class ListActivity extends AppCompatActivity
 
         lvPropositions.setAdapter(adapter);
     }
+
+    // TODO look at these methods and try to find where to call these
+//    private void initList() {
+//        List<Proposition> propositions = getPropositions();
+//        ArrayAdapter<Proposition> adapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_list_item_1, propositions);
+//
+//        lvPropositions.setAdapter(adapter);
+//
+//    }
+//
+//    private List<Proposition> getPropositions() {
+//        thingsDao.openReadable();
+//        List<Proposition> propositions = thingsDao.getPropositions();
+//        thingsDao.close();
+//
+//        return propositions;
+//    }
+//
+//    private void deleteProposition(Proposition proposition) {
+//        thingsDao.openWritable();
+//        thingsDao.delete(proposition);
+//        thingsDao.close();
+//        ((ArrayAdapter) lvPropositions.getAdapter()).notifyDataSetChanged();
+//    }
 
     @Override
     public void onClick(View v) {
@@ -111,6 +133,7 @@ public class ListActivity extends AppCompatActivity
                                 thingsDao.delete(clicked);
                                 thingsDao.close();
                                 refreshListView();
+
                                 break;
                         }
                     }
@@ -123,7 +146,7 @@ public class ListActivity extends AppCompatActivity
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         // TODO This crashes the app, look into it
-        // TODO Since you already do a SELECT * to populate your list
+        // TODO Since you already do a SELECT * to populate your list, you shouldn't
 
         String query = etSearch.getText().toString();
         ThingsDao thingsDao = new ThingsDao(this);
