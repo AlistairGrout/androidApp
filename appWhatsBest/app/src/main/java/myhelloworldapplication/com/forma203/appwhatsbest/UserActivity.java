@@ -11,6 +11,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button returnBtn;
     private Button gameBtn;
+    private Button listBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +19,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_user);
         gameBtn = findViewById(R.id.btn_game);
         returnBtn = findViewById(R.id.btn_return1);
+        listBtn = findViewById(R.id.btn_list);
         returnBtn.setOnClickListener(this);
         gameBtn.setOnClickListener(this);
+        listBtn.setOnClickListener(this);
     }
 
 
@@ -32,6 +35,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.btn_return1) {
             Intent toReturn = new Intent(UserActivity.this, RealMainActivity.class);
             startActivity(toReturn);
+        }else if (view.getId() == R.id.btn_list) {
+            Intent toAdd = new Intent(UserActivity.this, ListActivity.class);
+            startActivity(toAdd);
         }
 
     }

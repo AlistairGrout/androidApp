@@ -1,16 +1,11 @@
 package myhelloworldapplication.com.forma203.appwhatsbest;
 
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
-import javax.security.auth.callback.Callback;
 
 import myhelloworldapplication.com.forma203.appwhatsbest.Fragments.StartFragment;
 

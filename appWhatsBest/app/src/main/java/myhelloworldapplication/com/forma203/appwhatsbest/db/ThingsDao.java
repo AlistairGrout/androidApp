@@ -4,12 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import myhelloworldapplication.com.forma203.appwhatsbest.Model.Proposition;
-import myhelloworldapplication.com.forma203.appwhatsbest.UserActivity;
+
 
 
 public class ThingsDao
@@ -26,8 +27,7 @@ public class ThingsDao
             = String.format("CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "%s TEXT NOT NULL," +
-                    "%s TEXT NOT NULL)",
-
+                    "%s TEXT NOT NULL ) ",
             TABLE_NAME,
             COLUMN_ID,
             COLUMN_CHOICE1,
@@ -60,7 +60,7 @@ public class ThingsDao
 
     public long insert(Proposition proposition) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOICE1, proposition.getChoice());
+        values.put(COLUMN_CHOICE1, proposition.getChoice1());
         values.put(COLUMN_CHOICE2, proposition.getChoice2());
         return db.insert(TABLE_NAME, null, values);
     }
@@ -68,7 +68,7 @@ public class ThingsDao
     public long update(Proposition proposition)
     {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOICE1, proposition.getChoice());
+        values.put(COLUMN_CHOICE1, proposition.getChoice1());
         values.put(COLUMN_CHOICE2, proposition.getChoice2());
 
         return db.update(
@@ -115,27 +115,50 @@ public class ThingsDao
         }
     }
 
-    public List<Proposition> getPropositions() {
-
-        List<Proposition> proposition = new ArrayList<>();
-        Cursor c = getPropositionCursor();
-        while (c.moveToNext()) {
-            Proposition p = cursorToProposition(c);
-            proposition.add(p);
-        }
-        c.close();
-        return proposition;
-    }
-
-    private Cursor getPropositionCursor()
+    private Cursor getPropositionsCursor()
     {
         return db.query(TABLE_NAME, null, COLUMN_ID, new String[]{}, null, null, null);
+    }
+
+    public List<Proposition> getPropositions() {
+
+        List<Proposition> propositions = new ArrayList<>();
+        Cursor c = getPropositionsCursor();
+        while (c.moveToNext()) {
+            Proposition proposition = cursorToProposition(c);
+            propositions.add(proposition);
+        }
+        c.close();
+        return propositions;
+    }
+
+
+    public Cursor searchPropositionsCursor (String query) {
+        return db.query(TABLE_NAME,
+                null,
+                COLUMN_CHOICE1 + "LIKE ?",
+                new String[] { "%" + query + "%" },
+                null,
+                null,
+                COLUMN_CHOICE2);
+    }
+
+    public List <Proposition> searchProposition(String query) {
+
+        List<Proposition> propositions = new ArrayList<>();
+        Cursor c = searchPropositionsCursor(query);
+        while (c.moveToNext()) {
+            Proposition proposition = cursorToProposition(c);
+            propositions.add(proposition);
+        }
+        c.close();
+        return propositions;
     }
 
     public static Proposition cursorToProposition(Cursor c) {
         Proposition proposition = new Proposition();
         proposition.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        proposition.setChoice(c.getString(c.getColumnIndex(COLUMN_CHOICE1)));
+        proposition.setChoice1(c.getString(c.getColumnIndex(COLUMN_CHOICE1)));
         proposition.setChoice2(c.getString(c.getColumnIndex(COLUMN_CHOICE2)));
         return proposition;
     }
