@@ -1,15 +1,15 @@
-package myhelloworldapplication.com.forma203.appwhatsbest;
+package myhelloworldapplication.com.forma203.appwhatsbest.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import myhelloworldapplication.com.forma203.appwhatsbest.Fragments.StartFragment;
+import myhelloworldapplication.com.forma203.appwhatsbest.R;
 
 public class RealMainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
 
     @Override

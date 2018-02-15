@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "706179984576",
+    "firebase_url": "https://what-s-best-66.firebaseio.com",
+    "project_id": "what-s-best-66",
+    "storage_bucket": "what-s-best-66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706179984576:android:dbc122d2ab72d3df",
+        "android_client_info": {
+          "package_name": "myhelloworldapplication.com.forma203.appwhatsbest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706179984576-af9pgeep49rdrjfppd0c9gfma970tas1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5DFX9Hq2jzsfI7Le31ksdZQ-2j61vYoA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

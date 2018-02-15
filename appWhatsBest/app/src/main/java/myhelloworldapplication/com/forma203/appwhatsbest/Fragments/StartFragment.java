@@ -16,10 +16,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     // TODO ease of use / maintenance, this could be an activity (easier transitions)
 
     private Callback callback;
-    // TODO Warning told you ! Should be local
-    private Button btnLogin;
-    private Button btnRegister;
-    private Button btnAbout;
+
 
 
     @Override
@@ -28,9 +25,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_start, container, false);
 
         // TODO this should move below, in onViewCreated (cleaner lifecycle)
-        btnLogin = v.findViewById(R.id.btn_log);
-        btnRegister = v.findViewById(R.id.btn_register);
-        btnAbout = v.findViewById(R.id.btn_about);
+        Button btnLogin = v.findViewById(R.id.btn_log);
+        Button btnRegister = v.findViewById(R.id.btn_register);
+        Button btnAbout = v.findViewById(R.id.btn_about);
 
         btnLogin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);

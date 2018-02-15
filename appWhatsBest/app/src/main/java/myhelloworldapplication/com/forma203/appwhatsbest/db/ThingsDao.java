@@ -19,8 +19,8 @@ public class ThingsDao
     public static final String TABLE_NAME = "questions_db";
 
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_CHOICE1 = "choice1";
-    public static final String COLUMN_CHOICE2 = "choice2";
+    public static final String COLUMN_CHOICE1 = "firstChoice";
+    public static final String COLUMN_CHOICE2 = "secondChoice";
 
 
     public static final String CREATE_REQUEST
@@ -60,16 +60,16 @@ public class ThingsDao
 
     public long insert(Proposition proposition) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOICE1, proposition.getChoice1());
-        values.put(COLUMN_CHOICE2, proposition.getChoice2());
+        values.put(COLUMN_CHOICE1, proposition.getFirstChoice());
+        values.put(COLUMN_CHOICE2, proposition.getSecondChoice());
         return db.insert(TABLE_NAME, null, values);
     }
 
     public long update(Proposition proposition)
     {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CHOICE1, proposition.getChoice1());
-        values.put(COLUMN_CHOICE2, proposition.getChoice2());
+        values.put(COLUMN_CHOICE1, proposition.getFirstChoice());
+        values.put(COLUMN_CHOICE2, proposition.getSecondChoice());
 
         return db.update(
             TABLE_NAME, values,
@@ -158,8 +158,8 @@ public class ThingsDao
     public static Proposition cursorToProposition(Cursor c) {
         Proposition proposition = new Proposition();
         proposition.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        proposition.setChoice1(c.getString(c.getColumnIndex(COLUMN_CHOICE1)));
-        proposition.setChoice2(c.getString(c.getColumnIndex(COLUMN_CHOICE2)));
+        proposition.setFirstChoice(c.getString(c.getColumnIndex(COLUMN_CHOICE1)));
+        proposition.setSecondChoice(c.getString(c.getColumnIndex(COLUMN_CHOICE2)));
         return proposition;
     }
 

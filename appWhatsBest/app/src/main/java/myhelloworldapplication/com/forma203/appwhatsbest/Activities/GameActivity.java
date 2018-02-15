@@ -1,4 +1,4 @@
-package myhelloworldapplication.com.forma203.appwhatsbest;
+package myhelloworldapplication.com.forma203.appwhatsbest.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +12,13 @@ import java.util.List;
 import java.util.Random;
 
 import myhelloworldapplication.com.forma203.appwhatsbest.Model.Proposition;
+import myhelloworldapplication.com.forma203.appwhatsbest.R;
 import myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button check1;
-    private Button check2;
-    private TextView text1;
-    private TextView text2;
+    private TextView firstText;
+    private TextView secondText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +26,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
 
         // TODO This is OK since you will use that later
-        text1 = (TextView) findViewById(R.id.txt_1);
-        text2 = (TextView) findViewById(R.id.txt_2);
+        firstText = findViewById(R.id.txt_first);
+        secondText = findViewById(R.id.txt_second);
 
-        check1 = findViewById(R.id.btn_choice1);
-        check2 = findViewById(R.id.btn_choice2);
-        check1.setOnClickListener(this);
-        check2.setOnClickListener(this);
+        Button firstChoice = findViewById(R.id.btn_firstChoice);
+        Button secondChoice = findViewById(R.id.btn_secondChoice);
+        firstChoice.setOnClickListener(this);
+        secondChoice.setOnClickListener(this);
 
         showProposition();
 
@@ -42,8 +41,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_choice1:
-            case R.id.btn_choice2:
+            case R.id.btn_firstChoice:
+            case R.id.btn_secondChoice:
                 showProposition();
                 break;
         }
@@ -57,8 +56,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         int index = new Random().nextInt(propositions.size());
         Proposition proposition = propositions.get(index);
-        text1.setText(proposition.getChoice1());
-        text2.setText(proposition.getChoice2());
+        firstText.setText(proposition.getFirstChoice());
+        secondText.setText(proposition.getSecondChoice());
     }
 
 

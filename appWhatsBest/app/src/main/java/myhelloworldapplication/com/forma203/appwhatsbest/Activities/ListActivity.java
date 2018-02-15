@@ -1,4 +1,4 @@
-package myhelloworldapplication.com.forma203.appwhatsbest;
+package myhelloworldapplication.com.forma203.appwhatsbest.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +14,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 
+import java.util.List;
+
 import myhelloworldapplication.com.forma203.appwhatsbest.Model.Proposition;
+import myhelloworldapplication.com.forma203.appwhatsbest.R;
 import myhelloworldapplication.com.forma203.appwhatsbest.db.ThingsDao;
 
 public class ListActivity extends AppCompatActivity
@@ -23,7 +26,6 @@ public class ListActivity extends AppCompatActivity
         AdapterView.OnItemLongClickListener,
         View.OnKeyListener {
 
-    private Button btnAdd;
     private EditText etSearch;
     private ListView lvPropositions;
 
@@ -32,7 +34,7 @@ public class ListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        btnAdd = findViewById(R.id.btn_main_add);
+        Button btnAdd = findViewById(R.id.btn_main_add);
         etSearch = findViewById(R.id.et_main_search);
         lvPropositions = findViewById(R.id.lv_main_proposition);
 
@@ -40,6 +42,7 @@ public class ListActivity extends AppCompatActivity
         etSearch.setOnKeyListener(this);
         lvPropositions.setOnItemClickListener(this);
         lvPropositions.setOnItemLongClickListener(this);
+        ThingsDao thingsDao = new ThingsDao(this);
 
     }
 
@@ -53,10 +56,13 @@ public class ListActivity extends AppCompatActivity
         ThingsDao thingsDao = new ThingsDao(this);
         thingsDao.openReadable();
 
-        ArrayAdapter<Proposition> adapter = new ArrayAdapter<Proposition>(
-                this,
-                android.R.layout.simple_list_item_1,
-                thingsDao.getPropositions());
+        List<Proposition> propositions = thingsDao.getPropositions();
+        thingsDao.close();
+
+          ArrayAdapter<Proposition> adapter = new ArrayAdapter<Proposition>(
+               this,
+               android.R.layout.simple_list_item_1,
+               propositions);
 
                 thingsDao.close();
 
@@ -72,7 +78,7 @@ public class ListActivity extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Proposition clicked = (Proposition) parent.getItemAtPosition(position);
         Intent toDetails = new Intent(ListActivity.this, DetailsActivity.class);
-        toDetails.putExtra("proposition", clicked);
+        toDetails.putExtra(DetailsActivity.PROPOSITION, clicked);
         startActivity(toDetails);
     }
 
