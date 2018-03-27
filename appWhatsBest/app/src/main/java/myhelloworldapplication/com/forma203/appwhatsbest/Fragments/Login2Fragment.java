@@ -61,7 +61,6 @@ public class Login2Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
@@ -164,7 +163,5 @@ public class Login2Fragment extends Fragment implements View.OnClickListener {
         void resetActivity();
 
         void loginError(String error);
-
-        void registerStep(String etMail, String etPassword);
     }
 }

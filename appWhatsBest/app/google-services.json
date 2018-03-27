@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "706179984576-u1gf4oqtpggefju05g7eqv606lff31iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "myhelloworldapplication.com.forma203.appwhatsbest",
+            "certificate_hash": "61657630c2fefe0eeeb86295629ff5a52f6051a5"
+          }
+        },
+        {
           "client_id": "706179984576-af9pgeep49rdrjfppd0c9gfma970tas1.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706179984576-af9pgeep49rdrjfppd0c9gfma970tas1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

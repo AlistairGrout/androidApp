@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements
     public void registerError(String error) {
         Toast.makeText(this, this.getString(R.string.empty_spaces), Toast.LENGTH_SHORT).show();
     }
+
     //endregion
 
     @Override
@@ -108,33 +109,5 @@ public class MainActivity extends AppCompatActivity implements
         Intent toProfile = new Intent(MainActivity.this, RealMainActivity.class);
         startActivity(toProfile);
     }
-
-    @Override
-    public void registerStep(String etMail, String etPassword) {
-        mAuth.createUserWithEmailAndPassword(etMail, etPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("raf", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("raf", "createUserWithEmail:failure", task.getException());
-                            updateUI(null);
-                        }
-
-                    }
-                });
-    }
-    private void updateUI(FirebaseUser currentUser) {
-    }
-
-
-
-
 
 }
